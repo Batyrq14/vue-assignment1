@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Task Manager</h1>
+    <h1 class="title">Task Manager</h1>
 
     <TaskForm @add-task="addTask" />
 
@@ -82,6 +82,45 @@ const filteredTasks = computed(() => {
 </script>
 
 <style>
-.app { max-width: 600px; margin: 0 auto; padding: 20px; }
-.filters { margin: 20px 0; display: flex; gap: 10px; flex-wrap: wrap; }
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filters label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filters select, .filters input[type="checkbox"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.filters select:focus, .filters input[type="checkbox"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
 </style>

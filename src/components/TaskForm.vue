@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit" class="task-form">
     <input
       v-model="text"
       type="text"
@@ -25,7 +25,7 @@
   </form>
 </template>
 
-<script setup>
+<script lang="js" setup>
 import { ref } from 'vue';
 
 const text = ref('');
@@ -45,6 +45,33 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
-form { display: flex; gap: 10px; margin-bottom: 20px; }
-input, select, button { padding: 8px; }
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-form input, .task-form select, .task-form button {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.task-form input:focus, .task-form select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.task-form button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-form button:hover {
+  background-color: #2980b9;
+}
 </style>
