@@ -25,7 +25,7 @@
   </form>
 </template>
 
-<script lang="js" setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const text = ref('');

@@ -1,8 +1,8 @@
 <template>
-  <li :class="{ completed: task.completed }" class="task-item">
-    <span>{{ task.text }} ({{ task.priority }}, {{ task.category }})</span>
+  <li :class="{ completed: task?.completed }" class="task-item">
+    <span>{{ task?.text }} ({{ task?.priority }}, {{ task?.category }})</span>
     <div class="buttons">
-      <button @click="$emit('toggle-complete')">Mark as {{ task.completed ? 'Incomplete' : 'Completed' }}</button>
+      <button @click="$emit('toggle-complete')">Mark as {{ task?.completed ? 'Incomplete' : 'Completed' }}</button>
       <button @click="$emit('delete-task')">Delete</button>
     </div>
   </li>

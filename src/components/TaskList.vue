@@ -19,12 +19,24 @@
 <script lang="ts" setup>
 import TaskItem from './TaskItem.vue';
 
-defineProps({
-  tasks: Array,
-  incompleteCount: Number
-});
+// reuse Task interface
+interface Task {
+  id: number;
+  text: string;
+  priority: 'Low' | 'Medium' | 'High';
+  category: 'Work' | 'Personal' | 'Shopping' | '';
+  completed: boolean;
+}
 
-defineEmits(['toggle-complete', 'delete-task']);
+const props = defineProps<{
+  tasks: Task[];
+  incompleteCount: number;
+}>();
+
+defineEmits<{
+  (e: 'toggle-complete', id: number): void;
+  (e: 'delete-task', id: number): void;
+}>();
 </script>
 
 <style scoped>

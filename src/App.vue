@@ -43,12 +43,22 @@ import { ref, computed } from 'vue';
 import TaskForm from './components/TaskForm.vue';
 import TaskList from './components/TaskList.vue';
 
-const tasks = ref([]);
-const filterCategory = ref('');
-const filterPriority = ref('');
-const showIncompleteOnly = ref(false);
+interface Task {
+  id: number;
+  text: string;
+  priority: 'Low' | 'Medium' | 'High';
+  category: 'Work' | 'Personal' | 'Shopping' | '';
+  completed: boolean;
+}
 
-const addTask = (newTask) => {
+
+const tasks = ref<Task[]>([]);
+const filterCategory = ref<string>('');
+const filterPriority = ref<string>('');
+const showIncompleteOnly = ref<boolean>(false);
+
+
+const addTask = (newTask: Omit<Task, 'id' | 'completed'>) => {
   tasks.value.push({
     id: Date.now(),
     text: newTask.text,
@@ -58,14 +68,19 @@ const addTask = (newTask) => {
   });
 };
 
-const toggleComplete = (id) => {
+
+const toggleComplete = (id: number) => {
   const task = tasks.value.find(t => t.id === id);
-  if (task) task.completed = !task.completed;
+  if (task) {
+    task.completed = !task.completed;
+  }
 };
 
-const deleteTask = (id) => {
+
+const deleteTask = (id: number) => {
   tasks.value = tasks.value.filter(t => t.id !== id);
 };
+
 
 const incompleteCount = computed(() => {
   return tasks.value.filter(t => !t.completed).length;
